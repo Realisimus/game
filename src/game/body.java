@@ -8,7 +8,7 @@ public class body {
 	
 	//public static String url = "D:\\game.txt";
 	public static File gamefile = new File("D:\\game.txt");
-	public static int n = 5;
+	public static int n = 4;
 	public static int[] secret;
 	public static boolean win = false;
 	
@@ -24,15 +24,17 @@ public class body {
 			}
 		secret = WorkInFile.read(n);
 		
+		int iter = 0;
 		while (!win) {
 			
 			Numbers.NextNumber(); //Следующее число
 			Numbers.Check(); //Подсчет быков и коров
 			NumLib.clean(); //Чистка массива возможных чисел
-			
+			iter++;
 			System.out.println(NumLib.NumArray.size());
 			
 		}
+		System.out.println(iter);
 
 		
 	}

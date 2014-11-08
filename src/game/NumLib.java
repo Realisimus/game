@@ -18,6 +18,7 @@ public class NumLib {
 		}
 		NumArray.trimToSize();
 		
+		System.out.println(NumArray.size());
 	}
 	
 	public static boolean differ(int x) {
@@ -50,8 +51,6 @@ public class NumLib {
 	public static void clean() throws IOException {
 		
 		int[] t = WorkInFile.read(2);
-		//int cow = t[0];
-		//int bul = t[1];
 				
 		String s2 = String.valueOf(Numbers.Current);
 		char[] c2 = new String(s2).toCharArray();
@@ -73,7 +72,7 @@ public class NumLib {
 					}
 				}
 			}
-			if (cow + bul < t[0] + t[1] || bul < t[1]) {
+			if (cow != t[0] || bul != t[1]) {
 				NumArray.remove(a);
 				NumArray.trimToSize();
 			} else {

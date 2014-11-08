@@ -9,9 +9,10 @@ public class Numbers {
 
 	public static void NextNumber() throws IOException {
 		
-		Random rand = new Random();  
-		Current = NumLib.NumArray.get(rand.nextInt(NumLib.NumArray.size()));
-		WorkInFile.write("\r\n" + String.valueOf(Current));
+		Random rand = new Random();
+		int R = rand.nextInt(NumLib.NumArray.size());
+		Current = NumLib.NumArray.get(R);
+		WorkInFile.write("\r\n" + R + " " + String.valueOf(Current));
 		
 	}
 	
@@ -34,9 +35,11 @@ public class Numbers {
 			}
 		}
 		WorkInFile.write(String.valueOf(cow) + String.valueOf(bul));
-		if (bul == 5) {
+		if (bul == body.n) {
 			body.win = true;
 		}
+		NumLib.NumArray.remove(Current);
+		NumLib.NumArray.trimToSize();
 
 	}
 
