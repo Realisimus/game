@@ -6,36 +6,25 @@ import java.io.IOException;
 
 public class body {
 	
-	//public static String url = "D:\\game.txt";
 	public static File gamefile = new File("D:\\game.txt");
-	public static int n = 4;
-	public static int[] secret;
+	public static int N = 6;
+	public static int[] SecretNumber;
 	public static boolean win = false;
 	
 	public static void main(final String[] args) throws IOException {
 			
-		//Создание списка всех чисел
 		NumLib.create();
-		//NumLib.WriteFile("d:\\mass.txt");
 						
-		//Проверка наличия файла и чтение загаданного числа
 		if (!gamefile.exists()){
 			throw new FileNotFoundException(gamefile.getName());
 			}
-		secret = WorkInFile.read(n);
+		SecretNumber = WorkInFile.read(N);
 		
-		int iter = 0;
-		while (!win) {
-			
+		while (!win) {		
 			Numbers.NextNumber(); //Следующее число
 			Numbers.Check(); //Подсчет быков и коров
-			NumLib.clean(); //Чистка массива возможных чисел
-			iter++;
-			System.out.println(NumLib.NumArray.size());
-			
+			NumLib.clean(); //Чистка массива возможных чисел			
 		}
-		System.out.println(iter);
-
 		
 	}
 

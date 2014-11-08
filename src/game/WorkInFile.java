@@ -8,7 +8,6 @@ public class WorkInFile {
 		
 		FileWriter wfile = new FileWriter(body.gamefile, true);
 		wfile.append("\r\n" + number);
-		//wfile.flush();
 		wfile.close();
 	 
 	}
@@ -17,10 +16,10 @@ public class WorkInFile {
 		
 		FileReader rfile = new FileReader(body.gamefile);
 		
-		int[] CB = new int[o]; //массив из двух чисел для возврата
-		int l = (int) body.gamefile.length(); //длина файла
+		int[] CB = new int[o];
+		int l = (int) body.gamefile.length();
 		
-		char[] c = new char[l]; //массив чаров из файла
+		char[] c = new char[l];
 		rfile.read(c);
 		
 		for (int i = 1; i <= o; i++) {

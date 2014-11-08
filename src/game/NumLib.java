@@ -1,7 +1,5 @@
 package game;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,15 +8,12 @@ public class NumLib {
 	public static ArrayList<Integer> NumArray = new ArrayList<Integer>();
 	
 	public static void create() {
-		
-		for (int i = (int) Math.pow(10, body.n - 1); i < Math.pow(10, body.n); i++) {
+		for (int i = (int) Math.pow(10, body.N - 1); i < Math.pow(10, body.N); i++) {
 			if (differ(i)) {
 				NumArray.add(i);
 			}
 		}
 		NumArray.trimToSize();
-		
-		System.out.println(NumArray.size());
 	}
 	
 	public static boolean differ(int x) {
@@ -34,45 +29,28 @@ public class NumLib {
 		}
 		return b;
 	}
-
-	public static void WriteFile(String url) throws IOException {
-
-		File massfile = new File(url);
-		massfile.createNewFile();
-		FileWriter mass = new FileWriter(massfile, true);
-		for (int i = 0; i < NumArray.size(); i++) {
-			mass.write(String.valueOf(NumArray.get(i)));
-		}
-		mass.flush();
-		mass.close();
-		
-	}
 	
-	public static void clean() throws IOException {
-		
+	public static void clean() throws IOException {		
 		int[] t = WorkInFile.read(2);
-				
-		String s2 = String.valueOf(Numbers.Current);
-		char[] c2 = new String(s2).toCharArray();
-		
+		char[] c2 = new String(Numbers.Current).toCharArray();
 		int a = 0;
 		while (a < NumArray.size()) {
-			int cow = 0;
-			int bul = 0;
+			int cows = 0;
+			int bulls = 0;
 			String s1 = String.valueOf(NumArray.get(a));
 			char[] c1 = new String(s1).toCharArray();
-			for (int i = 0; i < body.n; i++) {
-				for (int j = 0; j < body.n; j++) {
+			for (int i = 0; i < body.N; i++) {
+				for (int j = 0; j < body.N; j++) {
 					if (c1[i] == c2[j]) {
 						if (i == j) {
-							bul++;
+							bulls++;
 						} else {
-							cow++;
+							cows++;
 						}
 					}
 				}
 			}
-			if (cow != t[0] || bul != t[1]) {
+			if (cows != t[0] || bulls != t[1]) {
 				NumArray.remove(a);
 				NumArray.trimToSize();
 			} else {
