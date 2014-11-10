@@ -30,7 +30,7 @@ public class NumLib {
 		return b;
 	}
 	
-	public static void clean() throws IOException {		
+	public static void clean() throws IOException, InterruptedException {		
 		int[] t = WorkInFile.read(2);
 		char[] c2 = new String(Numbers.Current).toCharArray();
 		int a = 0;

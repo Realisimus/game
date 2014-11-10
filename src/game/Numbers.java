@@ -7,16 +7,16 @@ public class Numbers {
 	
 	public static String Current;
 
-	public static void NextNumber() throws IOException {
+	public static void NextNumber() throws IOException, InterruptedException {
 		
 		Random rand = new Random();
 		int R = rand.nextInt(NumLib.NumArray.size());
 		Current = String.valueOf(NumLib.NumArray.get(R));
-		WorkInFile.write("\r\n" + Current);
+		WorkInFile.write(Current);
 		
 	}
 	
-	public static void Check() throws IOException {
+	public static void Check() throws IOException, InterruptedException {
 		
 		int cow = 0;
 		int bul = 0;
