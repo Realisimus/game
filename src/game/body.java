@@ -6,35 +6,58 @@ import java.io.IOException;
 public class body {
 	
 	public static File gamefile = new File("D:\\Bulls_Cows\\game.txt");
-	public static int N = 5;
-	public static int[] SecretNumber;
+	static int N = 3;
+	public static char[] SecretNumber;
 	public static boolean win = false;
 	
 	public static void main(final String[] args) throws IOException, InterruptedException {
-			
-		NumLib.create();
-						
-		//if (!gamefile.exists()){
-		//	throw new FileNotFoundException(gamefile.getName());
-		//	}
-		//SecretNumber = WorkInFile.read(N);
-		int iter = 0;
-		
+		NumLib.create();	
+		//guess();
+		//riddle();
+		test();
+	}
+	
+	public static void riddle() throws IOException, InterruptedException {
+		Numbers.Generate();
+		System.out.println(SecretNumber);
 		while (!win) {
-			Numbers.NextNumber(); //Следующее число
 			
-			int[] t = WorkInFile.read(2);
+			Numbers.Check();
+		}
+	}
+	
+	public static void guess() throws IOException, InterruptedException {
+		int iter =0;
+		while (!win) {
+			Numbers.NextNumber();
+			
+			char[] t = WorkInFile.read(2);
 			if (t[1] == N ) {
 				body.win = true;
 			}
-
-			//Numbers.Check(); //Подсчет быков и коров
-			NumLib.clean(); //Чистка массива возможных чисел
+			NumLib.clean();
 			iter++;
+		}		
+		WorkInFile.write("\r\n\r\nРЇ РїРѕР±РµРґРёР» РЅР° " + iter + " С…РѕРґ");
+	}
+	
+	public static void test() throws IOException, InterruptedException {
+		int iter =0;
+		Numbers.Generate();
+		String s = "";
+		for (int i = 0; i < N; i++) {
+			s = s + Character.toString(SecretNumber[i]);
 		}
-		
-		WorkInFile.write("\r\n\r\nЯ победил на " + iter + " ход");
-		
+		WorkInFile.write(s + "\r\n");
+		while (!win) {
+			Numbers.NextNumber();
+			WorkInFile.FileLenght = 0;
+			Numbers.Check();
+			WorkInFile.FileLenght = 0;
+			NumLib.clean();
+			iter++;
+		}		
+		WorkInFile.write("\r\n\r\nРЇ РїРѕР±РµРґРёР» РЅР° " + iter + " С…РѕРґ");
 	}
 
 }

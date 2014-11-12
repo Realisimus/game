@@ -7,23 +7,28 @@ public class Numbers {
 	
 	public static String Current;
 
+	public static void Generate() {
+		Random rand = new Random();
+		int R = rand.nextInt(NumLib.NumArray.size());
+		String s = String.valueOf(NumLib.NumArray.get(R));
+		char[] c = new String(s).toCharArray();
+		body.SecretNumber = c;
+	}
+	
 	public static void NextNumber() throws IOException, InterruptedException {
-		
 		Random rand = new Random();
 		int R = rand.nextInt(NumLib.NumArray.size());
 		Current = String.valueOf(NumLib.NumArray.get(R));
-		WorkInFile.write(Current);
-		
+		WorkInFile.write(Current);	
 	}
 	
 	public static void Check() throws IOException, InterruptedException {
-		
 		int cow = 0;
 		int bul = 0;
-		
-		int[] LastNumber = new int[body.N];
+		char[] LastNumber = new char[body.N];
 		LastNumber = WorkInFile.read(body.N);
 		for (int i = 0; i < body.N; i++) {
+			//System.out.println(LastNumber[i] + " " + body.SecretNumber[i]);
 			for (int j = 0; j < body.N; j++) {
 				if (LastNumber[i] == body.SecretNumber[j]) {
 					if (i == j) {
@@ -40,7 +45,6 @@ public class Numbers {
 		}
 		NumLib.NumArray.remove(Current);
 		NumLib.NumArray.trimToSize();
-
 	}
 
 }

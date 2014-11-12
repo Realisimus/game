@@ -31,7 +31,7 @@ public class NumLib {
 	}
 	
 	public static void clean() throws IOException, InterruptedException {		
-		int[] t = WorkInFile.read(2);
+		char[] t = WorkInFile.read(2);
 		char[] c2 = new String(Numbers.Current).toCharArray();
 		int a = 0;
 		while (a < NumArray.size()) {
@@ -50,14 +50,13 @@ public class NumLib {
 					}
 				}
 			}
-			if (cows != t[0] || bulls != t[1]) {
+			if (cows != (int)t[0] - 48 || bulls != (int)t[1] - 48) {
 				NumArray.remove(a);
 				NumArray.trimToSize();
 			} else {
 				a++;
 			}
 		}
-		
 	}
 
 }
