@@ -6,15 +6,15 @@ import java.io.IOException;
 public class body {
 	
 	public static File gamefile = new File("D:\\Bulls_Cows\\game.txt");
-	static int N = 3;
+	static int N = 5;
 	public static char[] SecretNumber;
 	public static boolean win = false;
 	
-	public static void main(final String[] args) throws IOException, InterruptedException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		NumLib.create();	
-		//guess();
+		guess();
 		//riddle();
-		test();
+		//test();
 	}
 	
 	public static void riddle() throws IOException, InterruptedException {
@@ -32,7 +32,7 @@ public class body {
 			Numbers.NextNumber();
 			
 			char[] t = WorkInFile.read(2);
-			if (t[1] == N ) {
+			if ((int) t[1] == N + 48) {
 				body.win = true;
 			}
 			NumLib.clean();

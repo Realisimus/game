@@ -19,15 +19,19 @@ public class WorkInFile {
 	
 	public static char[] read(int o) throws IOException, InterruptedException {
 		while (body.gamefile.length() == FileLenght) {
-			Thread.sleep(1000);
+			Thread.sleep(500);
 		}
 		FileReader rfile = new FileReader(body.gamefile);
 		char[] CB = new char[o];
 		int l = (int) body.gamefile.length();
 		char[] c = new char[l];
 		rfile.read(c);
+		int x = 0;
+		while ((int) c[l - x - 1] > 57 || (int) c[l - x - 1] < 48) {
+			x++;
+		}
 		for (int i = 1; i <= o; i++) {
-			CB[o - i] = c[l-i-4];
+			CB[o - i] = c[l - i - x];
 		}
 		rfile.close();
 	    return CB;
