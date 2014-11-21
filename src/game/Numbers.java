@@ -25,7 +25,7 @@ public class Numbers {
 	public static void Check() throws IOException, InterruptedException {
 		int cow = 0;
 		int bul = 0;
-		char[] LastNumber = new char[body.N];
+		char[] LastNumber;
 		LastNumber = WorkInFile.read(body.N);
 		for (int i = 0; i < body.N; i++) {
 			//System.out.println(LastNumber[i] + " " + body.SecretNumber[i]);

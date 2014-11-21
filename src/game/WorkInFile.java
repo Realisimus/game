@@ -9,11 +9,13 @@ public class WorkInFile {
 	public static void write(String number) throws IOException, InterruptedException {
 		FileWriter wfile = new FileWriter(body.gamefile, true);
 		if (body.gamefile.length() == 0) {
-			wfile.append(number);
+			wfile.append(number + "\r\n");
 		} else {
 			wfile.append(number + "\r\n");
 		}
 		wfile.close();
+		System.out.println();
+		System.out.println(number);
 		FileLenght = body.gamefile.length();
 	}
 	
@@ -34,6 +36,12 @@ public class WorkInFile {
 			CB[o - i] = c[l - i - x];
 		}
 		rfile.close();
+
+		System.out.println();
+		for (int k = 0; k < o; k++) {
+			System.out.print(CB[k]);
+		}
+
 	    return CB;
 	}
 	

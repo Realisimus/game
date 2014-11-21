@@ -9,9 +9,7 @@ public class NumLib {
 	
 	public static void create() {
 		for (int i = (int) Math.pow(10, body.N - 1); i < Math.pow(10, body.N); i++) {
-			if (differ(i)) {
-				NumArray.add(i);
-			}
+			if (differ(i)) NumArray.add(i);
 		}
 		NumArray.trimToSize();
 	}
@@ -21,7 +19,7 @@ public class NumLib {
 		String s = String.valueOf(x);
 		char[] c = new String(s).toCharArray();
 		for (int i = 0; i < s.length(); i++) {
-			for (int j = 0; j < s.length(); j++) {
+			for (int j = i; j < s.length(); j++) {
 				if (c[i] == c[j] && i != j) {
 					b = false;
 				}
