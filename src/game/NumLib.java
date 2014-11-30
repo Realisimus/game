@@ -29,7 +29,7 @@ public class NumLib {
 	}
 	
 	public static void clean() throws IOException, InterruptedException {		
-		char[] t = WorkInFile.read(2);
+		char[] t = WorkInFile.read(2, body.url);
 		char[] c2 = new String(Numbers.Current).toCharArray();
 		int a = 0;
 		while (a < NumArray.size()) {

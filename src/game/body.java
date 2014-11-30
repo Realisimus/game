@@ -1,20 +1,19 @@
 package game;
 
-import java.io.File;
 import java.io.IOException;
 
 public class body {
-	
-	public static File gamefile = new File("D:\\Bulls_Cows\\game.txt");
-	static int N = 5;
-	public static char[] SecretNumber;
-	public static boolean win = false;
+
+	private String url = "D:\\Bulls_Cows\\game.txt";
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
-		NumLib.create();	
-		guess();
+
+		NumbersLibrary numbersLibrary = new NumbersLibrary();
+		numbersLibrary.create(5);
+
+		//guess();
 		//riddle();
-		//test();
+		test();
 	}
 	
 	public static void riddle() throws IOException, InterruptedException {
@@ -31,14 +30,14 @@ public class body {
 		while (!win) {
 			Numbers.NextNumber();
 			
-			char[] t = WorkInFile.read(2);
+			char[] t = WorkInFile.read(2, url);
 			if ((int) t[1] == N + 48) {
 				body.win = true;
 			}
 			NumLib.clean();
 			iter++;
 		}		
-		WorkInFile.write("\r\n\r\nЯ победил на " + iter + " ход");
+		WorkInFile.write("\r\n\r\nЯ победил на " + iter + " ход", url);
 	}
 	
 	public static void test() throws IOException, InterruptedException {
@@ -48,7 +47,7 @@ public class body {
 		for (int i = 0; i < N; i++) {
 			s = s + Character.toString(SecretNumber[i]);
 		}
-		WorkInFile.write(s + "\r\n");
+		WorkInFile.write(s + "\r\n", url);
 		while (!win) {
 			Numbers.NextNumber();
 			WorkInFile.FileLenght = 0;
@@ -57,7 +56,7 @@ public class body {
 			NumLib.clean();
 			iter++;
 		}		
-		WorkInFile.write("\r\n\r\nЯ победил на " + iter + " ход");
+		WorkInFile.write("\r\n\r\nЯ победил на " + iter + " ход", url);
 	}
 
 }

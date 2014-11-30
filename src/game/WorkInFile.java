@@ -6,9 +6,10 @@ public class WorkInFile {
 	
 	public static long FileLenght = 0;
 
-	public static void write(String number) throws IOException, InterruptedException {
-		FileWriter wfile = new FileWriter(body.gamefile, true);
-		if (body.gamefile.length() == 0) {
+	public static void write(String number, String url) throws IOException, InterruptedException {
+		File file = new File(url);
+		FileWriter wfile = new FileWriter(file, true);
+		if (file.length() == 0) {
 			wfile.append(number + "\r\n");
 		} else {
 			wfile.append(number + "\r\n");
@@ -16,16 +17,17 @@ public class WorkInFile {
 		wfile.close();
 		System.out.println();
 		System.out.println(number);
-		FileLenght = body.gamefile.length();
+		FileLenght = file.length();
 	}
 	
-	public static char[] read(int o) throws IOException, InterruptedException {
-		while (body.gamefile.length() == FileLenght) {
+	public static char[] read(int o, String url) throws IOException, InterruptedException {
+		File file = new File(url);
+		while (file.length() == FileLenght) {
 			Thread.sleep(500);
 		}
-		FileReader rfile = new FileReader(body.gamefile);
+		FileReader rfile = new FileReader(file);
 		char[] CB = new char[o];
-		int l = (int) body.gamefile.length();
+		int l = (int) file.length();
 		char[] c = new char[l];
 		rfile.read(c);
 		int x = 0;
