@@ -1,50 +1,39 @@
 package game;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class WorkInFile {
 	
-	public static long FileLenght = 0;
+	private static long FileLenght = 0;
 
-	public static void write(String number, String url) throws IOException, InterruptedException {
-		File file = new File(url);
+	public static void write(char[] number, File file) throws IOException, InterruptedException {
+		if(!file.exists()) file.createNewFile();
 		FileWriter wfile = new FileWriter(file, true);
-		if (file.length() == 0) {
-			wfile.append(number + "\r\n");
-		} else {
-			wfile.append(number + "\r\n");
-		}
+		wfile.append(Arrays.toString(number)).append("\r\n");
 		wfile.close();
-		System.out.println();
-		System.out.println(number);
 		FileLenght = file.length();
 	}
+
 	
-	public static char[] read(int o, String url) throws IOException, InterruptedException {
-		File file = new File(url);
+	public static char[] read(int digit, File file) throws IOException, InterruptedException {
 		while (file.length() == FileLenght) {
 			Thread.sleep(500);
 		}
 		FileReader rfile = new FileReader(file);
-		char[] CB = new char[o];
+		char[] chars = new char[digit];
 		int l = (int) file.length();
-		char[] c = new char[l];
-		rfile.read(c);
+		char[] f = new char[l];
+		rfile.read(f);
 		int x = 0;
-		while ((int) c[l - x - 1] > 57 || (int) c[l - x - 1] < 48) {
+		while ((int) f[l - x - 1] > 57 || (int) f[l - x - 1] < 48) {
 			x++;
 		}
-		for (int i = 1; i <= o; i++) {
-			CB[o - i] = c[l - i - x];
+		for (int i = 1; i <= digit; i++) {
+			chars[digit - i] = f[l - i - x];
 		}
 		rfile.close();
-
-		System.out.println();
-		for (int k = 0; k < o; k++) {
-			System.out.print(CB[k]);
-		}
-
-	    return CB;
+	    return chars;
 	}
-	
 }
+
