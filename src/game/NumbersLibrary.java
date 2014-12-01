@@ -23,7 +23,7 @@ public class NumbersLibrary {
     public void clean(char[] number, char[] bc) {
         int a = 0;
         while (a < numbers.size()) {
-            char[] c = Numbers.calc(numbers.get(a), number);
+            char[] c = calc(numbers.get(a), number);
             if (c[0] != bc[0] || c[1] != bc[1]) {
                 numbers.remove(a);
                 numbers.trimToSize();
@@ -37,6 +37,24 @@ public class NumbersLibrary {
         Random rand = new Random();
         int R = rand.nextInt(numbers.size());
         return String.valueOf(numbers.get(R)).toCharArray();
+    }
+
+    public char[] calc(char[] number1, char[] number2) {
+        int bulls = 0;
+        int cows = 0;
+        for (int i = 0; i < number1.length; i++) {
+            for (int j = 0; j < number2.length; j++) {
+                if (number1[i] == number2[j]) {
+                    if (i == j) {
+                        bulls++;
+                    } else {
+                        cows++;
+                    }
+                }
+            }
+        }
+        String bc = Integer.toString(cows) + Integer.toString(bulls);
+        return bc.toCharArray();
     }
 
 }

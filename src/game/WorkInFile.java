@@ -5,19 +5,27 @@ import java.util.Arrays;
 
 public class WorkInFile {
 	
-	private static long FileLenght = 0;
+	private static long fileLenght = 0;
+
+	public static void clean(File file) throws IOException {
+		if(file.exists()) {
+			FileWriter wfile = new FileWriter(file, false);
+			wfile.write("");
+			wfile.close();
+		}
+	}
 
 	public static void write(char[] number, File file) throws IOException, InterruptedException {
 		if(!file.exists()) file.createNewFile();
 		FileWriter wfile = new FileWriter(file, true);
-		wfile.append(Arrays.toString(number)).append("\r\n");
+		wfile.append(new String(number)).append("\r\n");
 		wfile.close();
-		FileLenght = file.length();
+		fileLenght = file.length();
 	}
 
 	
 	public static char[] read(int digit, File file) throws IOException, InterruptedException {
-		while (file.length() == FileLenght) {
+		while (file.length() == fileLenght) {
 			Thread.sleep(500);
 		}
 		FileReader rfile = new FileReader(file);
@@ -34,6 +42,10 @@ public class WorkInFile {
 		}
 		rfile.close();
 	    return chars;
+	}
+
+	public static void reset() {
+		fileLenght = 0;
 	}
 }
 
