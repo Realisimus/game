@@ -21,16 +21,11 @@ public class NumbersLibrary {
     }
 
     public void clean(char[] number, char[] bc) {
-        int a = 0;
-        while (a < numbers.size()) {
-            char[] c = calc(numbers.get(a), number);
-            if (c[0] != bc[0] || c[1] != bc[1]) {
-                numbers.remove(a);
-                numbers.trimToSize();
-            } else {
-                a++;
-            }
+        for (char[] num : numbers) {
+            char[] c = calc(number, num);
+            if (c[0] != bc[0] || c[1] != bc[1]) numbers.remove(num);
         }
+        numbers.trimToSize();
     }
 
     public char[] random() {
@@ -45,11 +40,8 @@ public class NumbersLibrary {
         for (int i = 0; i < number1.length; i++) {
             for (int j = 0; j < number2.length; j++) {
                 if (number1[i] == number2[j]) {
-                    if (i == j) {
-                        bulls++;
-                    } else {
-                        cows++;
-                    }
+                    if (i == j) bulls++;
+                        else cows++;
                 }
             }
         }
