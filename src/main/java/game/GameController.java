@@ -62,8 +62,9 @@ public class GameController {
     }
 
     @RequestMapping(value = "/apiriddle", method = RequestMethod.GET)
-    public String getNumberApi(@RequestParam(value = "number") String number){
-        return String.valueOf(numbersLibrary.calc(secret, number.toCharArray()));
+    public ModelAndView getNumberApi(@RequestParam(value = "number") String number){
+        String s = String.valueOf(numbersLibrary.calc(secret, number.toCharArray()));
+        return new ModelAndView("api", "api", s);
     }
 
 }

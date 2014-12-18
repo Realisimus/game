@@ -8,7 +8,7 @@
 
         <a href="/guessfirst">Guess</a><br>
         <a href="/riddlefirst">Riddle</a><br>
-        <a href="/3">3</a><br>
+        <a href="/">3</a><br>
 
     </body>
 
